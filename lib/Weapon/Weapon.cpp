@@ -1,21 +1,12 @@
 #include <Arduino.h>
 #include <Weapon.h>
 
-Weapon::Weapon()
+Weapon::Weapon(int chargerSize, int damage, int shootInterval)
 {
-    struct _gun{
-      int _munition = 10;
-      int _damage = 10;
-    };
+  _chargerSize = chargerSize;
+  _damage = damage;
+  _shootInterval = shootInterval; 
+  _munitionCounter = chargerSize;    
 
-    struct _machinegun{
-      int _munition = 20;
-      int _damage = 25;
-    };
 
-    struct _sniper{
-      int _munition = 5;
-      int _damage = 50;
-    };
-
-}
+};

@@ -8,14 +8,13 @@ class Weapon
     
     private:
       int _damage;
-      int _munition; 
-      struct _gun;
-      struct _machinegun;
-      struct _sniper;
+      int _chargerSize;
+      int _munitionCounter;
+      float _shootInterval;
       
 
      public:
-      Weapon();
+      Weapon(int chargerSize, int damage, int shootInterval);
       void substractMunition();
       void rechargeMunition();
       void substractHealth();
