@@ -1,8 +1,9 @@
 #include <Arduino.h>
 #include <Player.h>
 #include <Weapon.h>
+#include <ConfigWeapon.h>
 
-Weapon weapon(15,10,1);
+ConfigWeapon configweapon;
 
 void setup()
 {
@@ -11,6 +12,6 @@ void setup()
  
 void loop()
 {
-   
+   Serial.println(configweapon._gun[0]);
    
 }
