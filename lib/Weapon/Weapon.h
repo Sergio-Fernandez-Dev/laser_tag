@@ -12,15 +12,20 @@ class Weapon {
       int _chargerSize;
       int _shootInterval;
       int _munitionCounter;
+      int _shootCounter;
+      bool _stillAlive;
 
      public:
-        bool stillAlive;
         Weapon(int, int,int);
-        void shoot(int, int);
+        void shoot();
         void substractMunition();
         void rechargeMunition();
         void substractHealth();
-        int getMunition();      
+
+      // GETTERS:
+
+        int getMunition();   
+        int getShootCounter();   
 };
 
 #endif

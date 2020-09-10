@@ -7,21 +7,39 @@ Weapon::Weapon(int chargerSize, int damage, int shootInterval)
   _damage = damage;
   _shootInterval = shootInterval; 
   _munitionCounter = chargerSize;    
-  stillAlive = true;
+  _shootCounter = 0;
+  _stillAlive = true;
 }
 
-void Weapon::shoot(int modePin, int shootInterval){
-  unsigned long timeCounter;
-  int shootDuration = 300;
-  if (digitalRead(MODESWITCH) == LOW){
-    do
+void Weapon::shoot(){
+  if (_stillAlive == true)
+  {
+    int shootDuration = 300;
+    unsigned long timeCounter;
+    if (digitalRead(MODESWITCH) == LOW)
     {
-      digitalWrite(STATUSLIGHT, HIGH);
-      if (millis() >= timeCounter + shootDuration){
-        timeCounter = millis();
-        digitalWrite(STATUSLIGHT, LOW);
-
-      }
-    } while (digitalRead(TRIGGER) == LOW && timeCounter >  timeCounter + shootInterval);
+      do
+      {
+        digitalWrite(STATUSLIGHT, HIGH);
+        if (millis() >= timeCounter + shootDuration)
+        {
+          digitalWrite(STATUSLIGHT, LOW);
+          timeCounter = millis();
+        }
+        _shootCounter += 1;
+        substractMunition();
+      } while (digitalRead(TRIGGER) == LOW && timeCounter >  timeCounter + _shootInterval);
+    }
+    else
+    {
+        digitalWrite(STATUSLIGHT, HIGH);
+        if (millis() >= timeCounter + shootDuration)
+        {
+          digitalWrite(STATUSLIGHT, LOW);
+          timeCounter = millis();
+        }
+        _shootCounter += 1;
+        substractMunition();
+    } 
   }
 }
