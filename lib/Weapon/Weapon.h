@@ -1,9 +1,10 @@
 #ifndef Weapon_h
 #define Weapon_h
 #define TRIGGER 13
-#define SHOOTLIGHT 12
-#define MODESWITCH 2
-#define RELOADSWITCH 7
+#define SHOOT_LIGHT 12
+#define MODE_SWITCH 2
+#define RELOAD_SWITCH 7
+#define RELOAD_LIGHT 8
 #include "Arduino.h"
 
 class Weapon {
