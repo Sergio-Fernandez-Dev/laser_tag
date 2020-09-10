@@ -3,3 +3,7 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+include/README
+test/README
+*.DS_Store
+laser_tag.docx
