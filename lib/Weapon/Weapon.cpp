@@ -20,10 +20,10 @@ void Weapon::shoot(){
     {
       do
       {
-        digitalWrite(STATUSLIGHT, HIGH);
+        digitalWrite(SHOOTLIGHT, HIGH);
         if (millis() >= timeCounter + shootDuration)
         {
-          digitalWrite(STATUSLIGHT, LOW);
+          digitalWrite(SHOOTLIGHT, LOW);
           timeCounter = millis();
         }
         _shootCounter += 1;
@@ -32,14 +32,22 @@ void Weapon::shoot(){
     }
     else
     {
-        digitalWrite(STATUSLIGHT, HIGH);
+        digitalWrite(SHOOTLIGHT, HIGH);
         if (millis() >= timeCounter + shootDuration)
         {
-          digitalWrite(STATUSLIGHT, LOW);
+          digitalWrite(SHOOTLIGHT, LOW);
           timeCounter = millis();
         }
         _shootCounter += 1;
         substractMunition();
     } 
+  }
+}
+
+void Weapon::substractMunition()
+{
+  if (_munitionCounter < 0)
+  {
+    _munitionCounter -=1;
   }
 }
