@@ -1,8 +1,9 @@
 #ifndef Weapon_h
 #define Weapon_h
 #define TRIGGER 13
-#define STATUSLIGHT 12
+#define SHOOTLIGHT 12
 #define MODESWITCH 2
+#define RELOADSWITCH 7
 #include "Arduino.h"
 
 class Weapon {
@@ -19,7 +20,7 @@ class Weapon {
         Weapon(int, int,int);
         void shoot();
         void substractMunition();
-        void rechargeMunition();
+        void reload();
         void substractHealth();
 
       // GETTERS:
