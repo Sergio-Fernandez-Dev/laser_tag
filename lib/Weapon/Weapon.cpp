@@ -12,18 +12,18 @@ Weapon::Weapon(int chargerSize, int damage, int shootInterval)
 }
 
 void Weapon::shoot(){
-  if (_stillAlive == true)
+  if (_stillAlive == true && _munitionCounter > 0)
   {
     int shootDuration = 300;
     unsigned long timeCounter;
-    if (digitalRead(MODESWITCH) == LOW)
+    if (digitalRead(MODE_SWITCH) == LOW)
     {
       do
       {
-        digitalWrite(SHOOTLIGHT, HIGH);
+        digitalWrite(SHOOT_LIGHT, HIGH);
         if (millis() >= timeCounter + shootDuration)
         {
-          digitalWrite(SHOOTLIGHT, LOW);
+          digitalWrite(SHOOT_LIGHT, LOW);
           timeCounter = millis();
         }
         _shootCounter += 1;
@@ -32,10 +32,10 @@ void Weapon::shoot(){
     }
     else
     {
-        digitalWrite(SHOOTLIGHT, HIGH);
+        digitalWrite(SHOOT_LIGHT, HIGH);
         if (millis() >= timeCounter + shootDuration)
         {
-          digitalWrite(SHOOTLIGHT, LOW);
+          digitalWrite(SHOOT_LIGHT, LOW);
           timeCounter = millis();
         }
         _shootCounter += 1;
@@ -50,4 +50,14 @@ void Weapon::substractMunition()
   {
     _munitionCounter -=1;
   }
+  else
+  {
+    digitalWrite(RELOAD_LIGHT, HIGH);
+  }
+}
+
+void Weapon::reload()
+{
+  _munitionCounter = _chargerSize;
+  digitalWrite(RELOAD_LIGHT, LOW);
 }
