@@ -10,19 +10,20 @@
 class Weapon {
     
     private:
-      int _damage;
-      int _chargerSize;
-      int _shootInterval;
-      int _munitionCounter;
-      int _shootCounter;
-      bool _stillAlive;
+      int _damage;            
+      int _chargerSize;       // Number of bullets allowed for each charger.
+      int _chargerCounter;    // Number of available chargers.
+      int _ammoCounter;   // Number of bullets in current charger.
+      int _totalAmmo;     // _chargerCounter * _chargerSize
+      int _shootInterval;     // Time between shoots.
+      int _shootCounter;      // For statics
 
      public:
-        Weapon(int, int,int);
+        Weapon(int, int, int, int);  // Constructor
         void shoot();
         void substractMunition();
         void reload();
-        void substractHealth();
+
 
       // GETTERS:
 
