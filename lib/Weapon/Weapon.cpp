@@ -1,18 +1,20 @@
 #include <Arduino.h>
 #include <Weapon.h>
 
-Weapon::Weapon(int chargerSize, int damage, int shootInterval)
+Weapon::Weapon(int chargerSize, int numOfChargers, int damage, int shootInterval)
 {
   _chargerSize = chargerSize;
-  _damage = damage;
-  _shootInterval = shootInterval; 
-  _munitionCounter = chargerSize;    
-  _shootCounter = 0;
-  _stillAlive = true;
+  _damage = damage;                        
+  _shootInterval = shootInterval;     
+  _ammoCounter = chargerSize;      
+  _chargerCounter = numOfChargers;     
+  _totalAmmo = chargerSize * numOfChargers; 
+  _shootCounter = 0;    
 }
 
-void Weapon::shoot(){
-  if (_stillAlive == true && _munitionCounter > 0)
+void Weapon::shoot()
+{
+  if (_ammoCounter > 0)
   {
     int shootDuration = 300;
     unsigned long timeCounter;
@@ -46,9 +48,9 @@ void Weapon::shoot(){
 
 void Weapon::substractMunition()
 {
-  if (_munitionCounter < 0)
+  if (_ammoCounter > 0)
   {
-    _munitionCounter -=1;
+    _ammoCounter -=1;
   }
   else
   {
@@ -58,6 +60,14 @@ void Weapon::substractMunition()
 
 void Weapon::reload()
 {
-  _munitionCounter = _chargerSize;
-  digitalWrite(RELOAD_LIGHT, LOW);
+  if (_totalAmmo > 0)
+  { 
+    do
+    {
+      _ammoCounter += 1;
+      _totalAmmo -= 1;
+    } while (_ammoCounter < _chargerSize && _totalAmmo > 0);
+    digitalWrite(RELOAD_LIGHT, LOW);
+  }
+
 }
