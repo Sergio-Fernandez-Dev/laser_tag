@@ -89,3 +89,4 @@ int WeaponAction::getAmmoInCharger() {return _ammoCounter;}
 int WeaponAction::getTotalAmmo() {return _totalAmmo;}
 int WeaponAction::getShootCounter() {return _shootCounter;}
 bool WeaponAction::getShootConfirmation() {return _shootConfirmation;}
+int WeaponAction::getShootInterval() {return _shootInterval;}

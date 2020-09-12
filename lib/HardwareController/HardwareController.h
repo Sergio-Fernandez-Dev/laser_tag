@@ -9,6 +9,18 @@
 
 #include <Arduino.h>
 
+class HardwareController
+{
+private:
+    unsigned long _timer;
+    unsigned long _fireDuration;
+public:
+    HardwareController(unsigned long timer, unsigned long fireDuration);
+    void checkShoot(bool shootConfirmation); // Checks if WeaponAction::shoot() was activated & puts on the fire light 
+
+};
+
+
 
 
 #endif

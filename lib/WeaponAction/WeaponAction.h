@@ -29,6 +29,7 @@ class WeaponAction {
         int getTotalAmmo();
         int getShootCounter();  
         bool getShootConfirmation(); 
+        int getShootInterval();
 };
 
 #endif
