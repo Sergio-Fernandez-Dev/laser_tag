@@ -18,7 +18,7 @@ private:
     bool _changeLedStatus;
 
 public:
-    void checkShoot(bool shootConfirmation); // Checks if WeaponAction::shoot() was activated & puts on the fire light 
+    void checkShoot(bool *shootConfirmation); // Checks if WeaponAction::shoot() was activated & puts on the fire light 
 
 };
 

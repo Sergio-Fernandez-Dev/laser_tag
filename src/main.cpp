@@ -38,7 +38,7 @@ void loop()
    }
 
    controller.checkShoot(weapon.getShootConfirmation());
-      
+     
    pushed2= digitalRead(RELOAD_SWITCH);
    if (pushed2 == HIGH)
    {

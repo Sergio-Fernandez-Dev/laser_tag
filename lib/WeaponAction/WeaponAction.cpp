@@ -20,36 +20,12 @@ void WeaponAction::shoot()
   Serial.println("Entrando en shoot()");
   if (_ammoCounter > 0)
   {
-    int shootDuration = 300;
-    unsigned long timeCounter;
-    if (_automaticMode)
-    {
-      do
-      {
-        digitalWrite(SHOOT_LIGHT, HIGH);
-        if (millis() >= timeCounter + shootDuration)
-        {
-          digitalWrite(SHOOT_LIGHT, LOW);
-          timeCounter = millis();
-        }
-        _shootCounter += 1;
-        substractAmmo();
-      } while (digitalRead(TRIGGER) == LOW && timeCounter >  timeCounter + _shootInterval);
-    }
-    else
-    {
-        digitalWrite(SHOOT_LIGHT, HIGH);
-        if (millis() >= timeCounter + shootDuration)
-        {
-          digitalWrite(SHOOT_LIGHT, LOW);
-          timeCounter = millis();
-        }
         _shootCounter += 1;
         _shootConfirmation = true;
 
         substractAmmo();
-    } 
   } 
+
   else
   {
     substractAmmo();
@@ -91,6 +67,6 @@ int WeaponAction::getShootCounter() {return _shootCounter;}
 bool WeaponAction::getShootConfirmation() {return _shootConfirmation;}
 
 // SETTERS:
-void WeaponAction::setShootConfirmation(bool value){
-  _shootConfirmation = value;
+void WeaponAction::setShootConfirmation(){
+  _shootConfirmation = false;
 }
