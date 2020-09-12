@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <WeaponAction.h>
+#include <HardwareController.h>
 
 WeaponAction::WeaponAction(int chargerSize, int numOfChargers, int damage, int shootInterval)
 {
@@ -10,6 +11,7 @@ WeaponAction::WeaponAction(int chargerSize, int numOfChargers, int damage, int s
   _chargerCounter = numOfChargers;     
   _totalAmmo = chargerSize * numOfChargers; 
   _shootCounter = 0;    
+  _shootConfirmation = false;
   _automaticMode = false;
 }
 
@@ -43,6 +45,8 @@ void WeaponAction::shoot()
           timeCounter = millis();
         }
         _shootCounter += 1;
+        _shootConfirmation = true;
+
         substractAmmo();
     } 
   } 
@@ -84,3 +88,4 @@ void WeaponAction::reload()
 int WeaponAction::getAmmoInCharger() {return _ammoCounter;}
 int WeaponAction::getTotalAmmo() {return _totalAmmo;}
 int WeaponAction::getShootCounter() {return _shootCounter;}
+bool WeaponAction::getShootConfirmation() {return _shootConfirmation;}
