@@ -29,8 +29,7 @@ void WeaponAction::shoot()
   else
   {
     substractAmmo();
-  }
-  
+  } 
 }
 
 void WeaponAction::substractAmmo()
@@ -66,4 +65,6 @@ int WeaponAction::getTotalAmmo() {return _totalAmmo;}
 int WeaponAction::getShootCounter() {return _shootCounter;}
 bool WeaponAction::getShootConfirmation() {return _shootConfirmation;}
 
+// SETTERS
+bool WeaponAction::setShootConfirmation() {_shootConfirmation = false;}
 

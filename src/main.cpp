@@ -3,10 +3,10 @@
 #include <HardwareController.h>
 
 WeaponAction weapon(3,3,10,500);
-HardwareController controller(true);
+HardwareController controller;
 
-int pushed1;
-int pushed2;
+int trigger;
+int reloader;
 
 void setup()
 {
@@ -21,8 +21,8 @@ void setup()
 void loop()
 {
    
-   pushed1 = digitalRead(TRIGGER);
-   if (pushed1 == HIGH)
+   trigger = digitalRead(TRIGGER);
+   if (trigger == HIGH)
    {
       weapon.shoot();
       delay(100);
@@ -38,9 +38,11 @@ void loop()
    }
 
    controller.checkShoot(weapon.getShootConfirmation());
+   
+   if (controller.getStopChecking() == true){weapon.setShootConfirmation();}
      
-   pushed2= digitalRead(RELOAD_SWITCH);
-   if (pushed2 == HIGH)
+   reloader = digitalRead(RELOAD_SWITCH);
+   if (reloader == HIGH)
    {
       weapon.reload();
       delay(100);
@@ -53,6 +55,5 @@ void loop()
       Serial.print("Numero total de balas: ");
       Serial.println(weapon.getTotalAmmo());
       delay(100);
-   }
-      
+   }     
 }

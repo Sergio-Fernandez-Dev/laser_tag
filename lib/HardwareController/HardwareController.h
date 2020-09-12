@@ -16,12 +16,12 @@ private:
     unsigned long _timeCounter;
     bool _ledStatus;
     bool _changeLedStatus;
-    bool aux;   
     int _loopCounter;
+    bool _stopChecking;
 public:
-    HardwareController(bool ledStatus);
+    HardwareController();
     void checkShoot(bool ShootConfirmationValue); // Checks if WeaponAction::shoot() was activated & puts on the fire light 
-
+    bool getStopChecking();
 };
 
 
