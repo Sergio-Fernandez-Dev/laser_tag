@@ -1,7 +1,7 @@
 #include <Arduino.h>
-#include <Weapon.h>
+#include <WeaponAction.h>
 
-Weapon weapon(3,3,10,500);
+WeaponAction weapon(3,3,10,500);
 int pushed1;
 int pushed2;
 

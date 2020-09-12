@@ -1,5 +1,5 @@
-#ifndef Weapon_h
-#define Weapon_h
+#ifndef WeaponAction_h
+#define WeaponAction_h
 #define TRIGGER 11
 #define SHOOT_LIGHT 13
 #define MODE_SWITCH 2
@@ -7,7 +7,7 @@
 #define RELOAD_LIGHT 8
 #include "Arduino.h"
 
-class Weapon {
+class WeaponAction {
     
     private:
       int _damage;            
@@ -20,9 +20,9 @@ class Weapon {
       bool _automaticMode;
 
      public:
-        Weapon(int chargerSize, int numOfChargers, int damage, int shootInterval);  // Constructor
+        WeaponAction(int chargerSize, int numOfChargers, int damage, int shootInterval);  // Constructor
         void shoot();
-        void substractMunition();
+        void substractAmmo();
         void reload();
 
 

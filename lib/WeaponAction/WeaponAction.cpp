@@ -1,7 +1,7 @@
 #include <Arduino.h>
-#include <Weapon.h>
+#include <WeaponAction.h>
 
-Weapon::Weapon(int chargerSize, int numOfChargers, int damage, int shootInterval)
+WeaponAction::WeaponAction(int chargerSize, int numOfChargers, int damage, int shootInterval)
 {
   _chargerSize = chargerSize;
   _damage = damage;                        
@@ -13,7 +13,7 @@ Weapon::Weapon(int chargerSize, int numOfChargers, int damage, int shootInterval
   _automaticMode = false;
 }
 
-void Weapon::shoot()
+void WeaponAction::shoot()
 {
   Serial.println("Entrando en shoot()");
   if (_ammoCounter > 0)
@@ -31,7 +31,7 @@ void Weapon::shoot()
           timeCounter = millis();
         }
         _shootCounter += 1;
-        substractMunition();
+        substractAmmo();
       } while (digitalRead(TRIGGER) == LOW && timeCounter >  timeCounter + _shootInterval);
     }
     else
@@ -43,19 +43,19 @@ void Weapon::shoot()
           timeCounter = millis();
         }
         _shootCounter += 1;
-        substractMunition();
+        substractAmmo();
     } 
   } 
   else
   {
-    substractMunition();
+    substractAmmo();
   }
   
 }
 
-void Weapon::substractMunition()
+void WeaponAction::substractAmmo()
 {
-  Serial.println("Entrando en substractMunition()");
+  Serial.println("Entrando en substractAmmo()");
   if (_ammoCounter > 0)
   {
     _ammoCounter -=1;
@@ -66,7 +66,7 @@ void Weapon::substractMunition()
   }
 }
 
-void Weapon::reload()
+void WeaponAction::reload()
 {
   Serial.println("Entrando en reload()");
   if (_totalAmmo > 0)
@@ -81,6 +81,6 @@ void Weapon::reload()
 }
 
   // GETTERS
-int Weapon::getAmmoInCharger() {return _ammoCounter;}
-int Weapon::getTotalAmmo() {return _totalAmmo;}
-int Weapon::getShootCounter() {return _shootCounter;}
+int WeaponAction::getAmmoInCharger() {return _ammoCounter;}
+int WeaponAction::getTotalAmmo() {return _totalAmmo;}
+int WeaponAction::getShootCounter() {return _shootCounter;}
