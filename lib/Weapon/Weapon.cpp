@@ -10,15 +10,17 @@ Weapon::Weapon(int chargerSize, int numOfChargers, int damage, int shootInterval
   _chargerCounter = numOfChargers;     
   _totalAmmo = chargerSize * numOfChargers; 
   _shootCounter = 0;    
+  _automaticMode = false;
 }
 
 void Weapon::shoot()
 {
+  Serial.println("Entrando en shoot()");
   if (_ammoCounter > 0)
   {
     int shootDuration = 300;
     unsigned long timeCounter;
-    if (digitalRead(MODE_SWITCH) == LOW)
+    if (_automaticMode = true)
     {
       do
       {
@@ -43,23 +45,30 @@ void Weapon::shoot()
         _shootCounter += 1;
         substractMunition();
     } 
+  } 
+  else
+  {
+    substractMunition();
   }
+  
 }
 
 void Weapon::substractMunition()
 {
+  Serial.println("Entrando en substractMunition()");
   if (_ammoCounter > 0)
   {
     _ammoCounter -=1;
-  }
-  else
-  {
-    digitalWrite(RELOAD_LIGHT, HIGH);
+      if (_ammoCounter == 0)
+      {
+        digitalWrite(RELOAD_LIGHT, HIGH);
+      }
   }
 }
 
 void Weapon::reload()
 {
+  Serial.println("Entrando en reload()");
   if (_totalAmmo > 0)
   { 
     do
@@ -69,5 +78,9 @@ void Weapon::reload()
     } while (_ammoCounter < _chargerSize && _totalAmmo > 0);
     digitalWrite(RELOAD_LIGHT, LOW);
   }
-
 }
+
+  // GETTERS
+int Weapon::getAmmoInCharger() {return _ammoCounter;}
+int Weapon::getTotalAmmo() {return _totalAmmo;}
+int Weapon::getShootCounter() {return _shootCounter;}

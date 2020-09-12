@@ -1,7 +1,7 @@
 #ifndef Weapon_h
 #define Weapon_h
-#define TRIGGER 13
-#define SHOOT_LIGHT 12
+#define TRIGGER 11
+#define SHOOT_LIGHT 13
 #define MODE_SWITCH 2
 #define RELOAD_SWITCH 7
 #define RELOAD_LIGHT 8
@@ -17,9 +17,10 @@ class Weapon {
       int _totalAmmo;     // _chargerCounter * _chargerSize
       int _shootInterval;     // Time between shoots.
       int _shootCounter;      // For statics
+      bool _automaticMode;
 
      public:
-        Weapon(int, int, int, int);  // Constructor
+        Weapon(int chargerSize, int numOfChargers, int damage, int shootInterval);  // Constructor
         void shoot();
         void substractMunition();
         void reload();
@@ -27,7 +28,8 @@ class Weapon {
 
       // GETTERS:
 
-        int getMunition();   
+        int getAmmoInCharger();   
+        int getTotalAmmo();
         int getShootCounter();   
 };
 
