@@ -3,33 +3,33 @@
 
 #include "Arduino.h"
 
-class WeaponAction {
-    
-    private:
-      int _damage;            
-      int _chargerSize;       // Number of bullets allowed for each charger.
-      int _chargerCounter;    // Number of available chargers.
-      int _ammoCounter;   // Number of bullets in current charger.
-      int _totalAmmo;     // _chargerCounter * _chargerSize
-      int _shootInterval;     // Time between shoots.
-      int _shootCounter; 
-      bool _shootConfirmation;     // For statics
-      bool _automaticMode;
+class WeaponAction 
+{    
+  private:
+    int _damage;            
+    int _chargerSize;                       // Number of bullets allowed for each charger.
+    int _chargerCounter;                    // Number of available chargers.
+    int _ammoCounter;                       // Number of bullets in current charger.
+    int _totalAmmo;                         // _chargerCounter * _chargerSize
+    int _shootInterval;                     // Time between shoots.
+    int _shootCounter;                      // For statics
+    static bool _shootConfirmation;     
+    bool _automaticMode;
 
-     public:
-        WeaponAction(int chargerSize, int numOfChargers, int damage, int shootInterval);  // Constructor
-        void shoot();
-        void substractAmmo();
-        void reload();
+  public:
+    WeaponAction(int chargerSize, int numOfChargers, int damage, int shootInterval);  // Constructor
+    void shoot();
+    void substractAmmo();
+    void reload();
 
-
-      // GETTERS:
-
-        int getAmmoInCharger();   
-        int getTotalAmmo();
-        int getShootCounter();  
-        bool getShootConfirmation(); 
-        int getShootInterval();
+    // GETTERS:
+    int getAmmoInCharger();   
+    int getTotalAmmo();
+    int getShootCounter();  
+    static bool getShootConfirmation(); 
+      
+    // SETTERS:
+    static void setShootConfirmation(bool value);
 };
 
 #endif

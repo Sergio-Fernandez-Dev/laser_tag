@@ -1,10 +1,12 @@
 #include <Arduino.h>
 #include <WeaponAction.h>
+#include <HardwareController.h>
 
 WeaponAction weapon(3,3,10,500);
+HardwareController controller;
+
 int pushed1;
 int pushed2;
-
 
 void setup()
 {
@@ -34,6 +36,8 @@ void loop()
       Serial.println(weapon.getTotalAmmo());
       delay(100);
    }
+
+   controller.checkShoot(weapon.getShootConfirmation());
       
    pushed2= digitalRead(RELOAD_SWITCH);
    if (pushed2 == HIGH)

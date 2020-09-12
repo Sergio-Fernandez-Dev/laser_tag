@@ -2,7 +2,7 @@
 #include <WeaponAction.h>
 #include <HardwareController.h>
 
-WeaponAction::WeaponAction(int chargerSize, int numOfChargers, int damage, int shootInterval)
+WeaponAction::WeaponAction(int chargerSize, int numOfChargers, int damage,  int shootInterval)
 {
   _chargerSize = chargerSize;
   _damage = damage;                        
@@ -84,9 +84,13 @@ void WeaponAction::reload()
   }
 }
 
-  // GETTERS
+// GETTERS
 int WeaponAction::getAmmoInCharger() {return _ammoCounter;}
 int WeaponAction::getTotalAmmo() {return _totalAmmo;}
 int WeaponAction::getShootCounter() {return _shootCounter;}
 bool WeaponAction::getShootConfirmation() {return _shootConfirmation;}
-int WeaponAction::getShootInterval() {return _shootInterval;}
+
+// SETTERS:
+void WeaponAction::setShootConfirmation(bool value){
+  _shootConfirmation = value;
+}

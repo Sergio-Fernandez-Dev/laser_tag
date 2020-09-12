@@ -6,16 +6,18 @@
 #define MODE_SWITCH 2
 #define RELOAD_SWITCH 7
 #define RELOAD_LIGHT 8
+#define FIRE_DURATION 500
 
 #include <Arduino.h>
 
 class HardwareController
 {
 private:
-    unsigned long _timer;
-    unsigned long _fireDuration;
+    unsigned long _timeCounter;
+    bool _ledStatus;
+    bool _changeLedStatus;
+
 public:
-    HardwareController(unsigned long timer, unsigned long fireDuration);
     void checkShoot(bool shootConfirmation); // Checks if WeaponAction::shoot() was activated & puts on the fire light 
 
 };
