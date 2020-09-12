@@ -20,7 +20,7 @@ void WeaponAction::shoot()
   {
     int shootDuration = 300;
     unsigned long timeCounter;
-    if (_automaticMode = true)
+    if (_automaticMode)
     {
       do
       {
@@ -71,11 +71,11 @@ void WeaponAction::reload()
   Serial.println("Entrando en reload()");
   if (_totalAmmo > 0)
   { 
-    do
+    while (_ammoCounter < _chargerSize && _totalAmmo > 0)
     {
       _ammoCounter += 1;
       _totalAmmo -= 1;
-    } while (_ammoCounter < _chargerSize && _totalAmmo > 0);
+    }
     digitalWrite(RELOAD_LIGHT, LOW);
   }
 }
