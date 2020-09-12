@@ -3,7 +3,7 @@
 #include <HardwareController.h>
 
 WeaponAction weapon(3,3,10,500);
-HardwareController controller;
+HardwareController controller(true);
 
 int pushed1;
 int pushed2;

@@ -13,7 +13,7 @@ class WeaponAction
       int _totalAmmo;                         // _chargerCounter * _chargerSize
       int _shootInterval;                     // Time between shoots.
       int _shootCounter;                      // For statics
-      static bool _shootConfirmation;     
+      bool _shootConfirmation;     
       bool _automaticMode;
 
     public:
@@ -26,10 +26,8 @@ class WeaponAction
       int getAmmoInCharger();   
       int getTotalAmmo();
       int getShootCounter();  
-      static bool getShootConfirmation(); 
-        
-      // SETTERS:
-      static void setShootConfirmation();
+      bool getShootConfirmation(); 
+    
 };
 
 #endif

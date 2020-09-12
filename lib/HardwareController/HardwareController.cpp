@@ -1,32 +1,39 @@
 #include <HardwareController.h>
 #include <WeaponAction.h>
+#include <Arduino.h>
 
-unsigned long _timeCounter = 0;
-bool _ledStatus = true;
-bool _changeLedStatus = false;
-bool aux;
-int _loopCounter = 1;
-
-void HardwareController::checkShoot(bool *shootConfirmation)
+HardwareController::HardwareController(bool ledStatus)
 {
-    if (shootConfirmation)
+    _timeCounter = 0;
+    _ledStatus = ledStatus;
+    _changeLedStatus = false;
+    aux;
+    _loopCounter = 0;
+}
+
+void HardwareController::checkShoot(bool shootConfirmationValue)
+{
+    if (shootConfirmationValue)
     {
-        if (millis() - _timeCounter >= FIRE_DURATION)           
+        if (millis() - _timeCounter >= FIRE_DURATION && _loopCounter < 2)           
         {
             digitalWrite(SHOOT_LIGHT, _ledStatus);
+            Serial.print("Dentro del primer if, _ledStatus: ");
+            Serial.println(_ledStatus);
             _timeCounter = millis();
             aux = _ledStatus;                                   // Changes the status of the boolean value
             _ledStatus = _changeLedStatus;
             _changeLedStatus = aux;
-            Serial.begin(_ledStatus);
-            if (_loopCounter == 2)                              // When the SHOOT_LIGHT is off, changes the shootConfirmation status
-            {
-                bool *shootConfirmation = false;
-            }
-            else
-            {
-                _loopCounter += 1;
-            }            
+            Serial.println(_ledStatus);
+            _loopCounter += 1;        
+            Serial.print("counter: ");
+            Serial.println(_loopCounter);    
+        }
+        if (millis() - _timeCounter >= FIRE_DURATION && _loopCounter == 2)  
+        {
+            _loopCounter = 0;   
+            Serial.print("Entrando al ultimo if, counter: ");
+            Serial.println(_loopCounter);  
         }
     }
 }

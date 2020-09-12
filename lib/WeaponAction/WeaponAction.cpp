@@ -66,7 +66,4 @@ int WeaponAction::getTotalAmmo() {return _totalAmmo;}
 int WeaponAction::getShootCounter() {return _shootCounter;}
 bool WeaponAction::getShootConfirmation() {return _shootConfirmation;}
 
-// SETTERS:
-void WeaponAction::setShootConfirmation(){
-  _shootConfirmation = false;
-}
+
