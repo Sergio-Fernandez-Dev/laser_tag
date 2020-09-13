@@ -6,7 +6,7 @@
 #define MODE_SWITCH 2
 #define RELOAD_SWITCH 7
 #define RELOAD_LIGHT 8
-#define FIRE_DURATION 1000
+#define FIRE_DURATION 300
 
 #include <Arduino.h>
 
@@ -23,8 +23,5 @@ public:
     void checkShoot(bool ShootConfirmationValue); // Checks if WeaponAction::shoot() was activated & puts on the fire light 
     bool getStopChecking();
 };
-
-
-
 
 #endif
