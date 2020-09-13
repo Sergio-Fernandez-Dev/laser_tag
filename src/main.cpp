@@ -25,16 +25,12 @@ void loop()
    if (trigger == HIGH)
    {
       weapon.shoot();
-      delay(100);
       Serial.print("Numero disparos: ");
       Serial.println(weapon.getShootCounter());
-      delay(100);
       Serial.print("Numero balas en cargador: ");
       Serial.println(weapon.getAmmoInCharger());
-      delay(100);
       Serial.print("Numero total de balas: ");
       Serial.println(weapon.getTotalAmmo());
-      delay(100);
    }
 
    controller.checkShoot(weapon.getShootConfirmation());
@@ -45,15 +41,11 @@ void loop()
    if (reloader == HIGH)
    {
       weapon.reload();
-      delay(100);
       Serial.print("Numero disparos: ");
       Serial.println(weapon.getShootCounter());
-      delay(100);
       Serial.print("Numero balas en cargador: ");
       Serial.println(weapon.getAmmoInCharger());
-      delay(100);
       Serial.print("Numero total de balas: ");
       Serial.println(weapon.getTotalAmmo());
-      delay(100);
    }     
 }
