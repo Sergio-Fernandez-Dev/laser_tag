@@ -3,7 +3,7 @@
 
 #include "Arduino.h"
 
-class WeaponAction 
+class WeaponAction
 {    
     private:
       int _damage;            
@@ -11,13 +11,14 @@ class WeaponAction
       int _chargerCounter;                    // Number of available chargers.
       int _ammoCounter;                       // Number of bullets in current charger.
       int _totalAmmo;                         // _chargerCounter * _chargerSize
-      int _shootInterval;                     // Time between shoots.
+      unsigned long _shootInterval;           // Time between shoots.
       int _shootCounter;                      // For statics
       bool _shootConfirmation;     
       bool _automaticMode;
+      unsigned long _timeCounter;
 
     public:
-      WeaponAction(int chargerSize, int numOfChargers, int damage, int shootInterval);  // Constructor
+      WeaponAction(int chargerSize, int numOfChargers, int damage, unsigned long shootInterval);  // Constructor
       void shoot();
       void substractAmmo();
       void reload();
@@ -29,7 +30,7 @@ class WeaponAction
       bool getShootConfirmation();
 
       //SETTERS:
-      bool setShootConfirmation();
+      void setShootConfirmation();
     
 };
 

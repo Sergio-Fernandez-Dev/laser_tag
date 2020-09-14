@@ -2,7 +2,7 @@
 #include <WeaponAction.h>
 #include <HardwareController.h>
 
-WeaponAction::WeaponAction(int chargerSize, int numOfChargers, int damage,  int shootInterval)
+WeaponAction::WeaponAction(int chargerSize, int numOfChargers, int damage,  unsigned long shootInterval)
 {
   _chargerSize = chargerSize;
   _damage = damage;                        
@@ -13,19 +13,21 @@ WeaponAction::WeaponAction(int chargerSize, int numOfChargers, int damage,  int 
   _shootCounter = 0;    
   _shootConfirmation = false;
   _automaticMode = false;
+  _timeCounter = 0;
 }
 
 void WeaponAction::shoot()
 {
-  Serial.println("Entrando en shoot()");
   if (_ammoCounter > 0)
   {
-        _shootCounter += 1;
-        _shootConfirmation = true;
-
-        substractAmmo();
+    if (millis() - _timeCounter >= _shootInterval)
+    {
+      _timeCounter = millis();
+      _shootCounter += 1;
+      _shootConfirmation = true;
+      substractAmmo();
+    }
   } 
-
   else
   {
     substractAmmo();
@@ -34,7 +36,6 @@ void WeaponAction::shoot()
 
 void WeaponAction::substractAmmo()
 {
-  Serial.println("Entrando en substractAmmo()");
   if (_ammoCounter > 0)
   {
     _ammoCounter -=1;
@@ -66,5 +67,5 @@ int WeaponAction::getShootCounter() {return _shootCounter;}
 bool WeaponAction::getShootConfirmation() {return _shootConfirmation;}
 
 // SETTERS
-bool WeaponAction::setShootConfirmation() {_shootConfirmation = false;}
+void WeaponAction::setShootConfirmation() {_shootConfirmation = false;}
 

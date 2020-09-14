@@ -2,7 +2,7 @@
 #include <WeaponAction.h>
 #include <HardwareController.h>
 
-WeaponAction weapon(3,3,10,500);
+WeaponAction weapon(3,3,10,5000);
 HardwareController controller;
 
 int trigger;
