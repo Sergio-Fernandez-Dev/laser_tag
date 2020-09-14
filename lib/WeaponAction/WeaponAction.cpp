@@ -13,19 +13,21 @@ WeaponAction::WeaponAction(int chargerSize, int numOfChargers, int damage,  unsi
   _shootCounter = 0;    
   _shootConfirmation = false;
   _automaticMode = false;
-  _timeCounter = 0;
+  _timeCounter = shootInterval; 
 }
 
 void WeaponAction::shoot()
 {
   if (_ammoCounter > 0)
   {
-    if (millis() - _timeCounter >= _shootInterval)
+    if (millis() - _timeCounter >= _shootInterval) // Executes the shot only if the time set between one shot and another has already passed.
     {
-      _timeCounter = millis();
       _shootCounter += 1;
       _shootConfirmation = true;
       substractAmmo();
+      _timeCounter = millis();
+      Serial.print ("_timeCounter: ");
+      Serial.println(_timeCounter);
     }
   } 
   else
@@ -34,7 +36,7 @@ void WeaponAction::shoot()
   } 
 }
 
-void WeaponAction::substractAmmo()
+void WeaponAction::substractAmmo()  //Substracts one bullet or puts warning light on.
 {
   if (_ammoCounter > 0)
   {
