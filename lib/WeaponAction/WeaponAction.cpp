@@ -13,7 +13,7 @@ WeaponAction::WeaponAction(int chargerSize, int numOfChargers, int damage, unsig
   _shootCounter = 0;
   _shootConfirmation = false;
   _automaticMode = false;
-  _timeCounter = shootInterval;
+  _timeCounter = 0;
   _reloadStatus = false;
 }
 

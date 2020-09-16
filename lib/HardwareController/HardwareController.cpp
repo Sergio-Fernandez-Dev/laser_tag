@@ -30,7 +30,7 @@ void HardwareController::checkShoot(bool *ptrShootConfirmation)
             Serial.print("loop: ");
             Serial.println(_loopCounter);
         }
-        if (millis() - _timeCounter >= FIRE_DURATION && _loopCounter == 2)
+        if (_loopCounter == 2)
         {
             _loopCounter = 0;
             *ptrShootConfirmation = false;
