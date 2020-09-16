@@ -2,18 +2,19 @@
 #include <WeaponAction.h>
 #include <HardwareController.h>
 
-WeaponAction::WeaponAction(int chargerSize, int numOfChargers, int damage,  unsigned long shootInterval)
+WeaponAction::WeaponAction(int chargerSize, int numOfChargers, int damage, unsigned long shootInterval)
 {
   _chargerSize = chargerSize;
-  _damage = damage;                        
-  _shootInterval = shootInterval;     
-  _ammoCounter = chargerSize;      
-  _chargerCounter = numOfChargers;     
-  _totalAmmo = chargerSize * numOfChargers; 
-  _shootCounter = 0;    
+  _damage = damage;
+  _shootInterval = shootInterval;
+  _ammoCounter = chargerSize;
+  _chargerCounter = numOfChargers;
+  _totalAmmo = chargerSize * numOfChargers;
+  _shootCounter = 0;
   _shootConfirmation = false;
   _automaticMode = false;
-  _timeCounter = shootInterval; 
+  _timeCounter = shootInterval;
+  _reloadStatus = false;
 }
 
 void WeaponAction::shoot()
@@ -26,25 +27,23 @@ void WeaponAction::shoot()
       _shootConfirmation = true;
       substractAmmo();
       _timeCounter = millis();
-      Serial.print ("_timeCounter: ");
-      Serial.println(_timeCounter);
     }
-  } 
+  }
   else
   {
     substractAmmo();
-  } 
+  }
 }
 
-void WeaponAction::substractAmmo()  //Substracts one bullet or puts warning light on.
+void WeaponAction::substractAmmo() //Substracts one bullet or puts warning light on.
 {
   if (_ammoCounter > 0)
   {
-    _ammoCounter -=1;
-      if (_ammoCounter == 0)
-      {
-        digitalWrite(RELOAD_LIGHT, HIGH);
-      }
+    _ammoCounter -= 1;
+    if (_ammoCounter == 0)
+    {
+      _reloadStatus = true;
+    }
   }
 }
 
@@ -52,22 +51,22 @@ void WeaponAction::reload()
 {
   Serial.println("Entrando en reload()");
   if (_totalAmmo > 0)
-  { 
+  {
     while (_ammoCounter < _chargerSize && _totalAmmo > 0)
     {
       _ammoCounter += 1;
       _totalAmmo -= 1;
     }
-    digitalWrite(RELOAD_LIGHT, LOW);
+    _reloadStatus = false;
   }
 }
 
 // GETTERS
-int WeaponAction::getAmmoInCharger() {return _ammoCounter;}
-int WeaponAction::getTotalAmmo() {return _totalAmmo;}
-int WeaponAction::getShootCounter() {return _shootCounter;}
-bool* WeaponAction::getShootConfirmation() {return &_shootConfirmation;}
+int WeaponAction::getAmmoInCharger() { return _ammoCounter; }
+int WeaponAction::getTotalAmmo() { return _totalAmmo; }
+int WeaponAction::getShootCounter() { return _shootCounter; }
+bool *WeaponAction::getShootConfirmation() { return &_shootConfirmation; }
+bool *WeaponAction::getReloadStatus() { return &_reloadStatus; }
 
 // SETTERS
-void WeaponAction::setShootConfirmation() {_shootConfirmation = false;}
-
+void WeaponAction::setShootConfirmation() { _shootConfirmation = false; }

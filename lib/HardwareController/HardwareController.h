@@ -18,10 +18,11 @@ private:
     bool _changeLedStatus;
     int _loopCounter;
     bool _stopChecking;
+
 public:
     HardwareController();
     void checkShoot(bool *ptrShootConfirmation); // Checks if WeaponAction::shoot() was activated & puts on the fire light 
-    bool getStopChecking();
+    void checkReloadStatus(bool *ptrReloadStatus);
 };
 
 #endif

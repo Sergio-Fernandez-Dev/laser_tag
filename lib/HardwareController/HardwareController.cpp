@@ -10,7 +10,7 @@ HardwareController::HardwareController()
     _loopCounter = 0;
 }
 
-void HardwareController::checkShoot(bool *ptrShootConfirmation) 
+void HardwareController::checkShoot(bool *ptrShootConfirmation)
 {
     if (*ptrShootConfirmation)
     {
@@ -24,11 +24,11 @@ void HardwareController::checkShoot(bool *ptrShootConfirmation)
             aux = _ledStatus; // Changes the status of the boolean value
             _ledStatus = _changeLedStatus;
             _changeLedStatus = aux;
-            _loopCounter += 1;     
+            _loopCounter += 1;
             Serial.print("Led Status primer if: ");
-            Serial.println(_ledStatus);     
+            Serial.println(_ledStatus);
             Serial.print("loop: ");
-            Serial.println(_loopCounter);   
+            Serial.println(_loopCounter);
         }
         if (millis() - _timeCounter >= FIRE_DURATION && _loopCounter == 2)
         {
@@ -37,10 +37,12 @@ void HardwareController::checkShoot(bool *ptrShootConfirmation)
             Serial.print("puntero Shoot confirmation segundo if: ");
             Serial.println(*ptrShootConfirmation);
             Serial.print("Led Status segundo if: ");
-            Serial.println(_ledStatus);    
+            Serial.println(_ledStatus);
         }
     }
 }
 
-// GETTERS
-bool HardwareController::getStopChecking() { return _stopChecking; }
+void HardwareController::checkReloadStatus(bool *ptrReloadStatus)
+{
+    digitalWrite(RELOAD_LIGHT, *ptrReloadStatus);
+}

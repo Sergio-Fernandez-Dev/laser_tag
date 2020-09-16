@@ -34,6 +34,7 @@ void loop()
    }
 
    controller.checkShoot(weapon.getShootConfirmation());
+   controller.checkReloadStatus(weapon.getReloadStatus());
      
    reloader = digitalRead(RELOAD_SWITCH);
    if (reloader == HIGH)

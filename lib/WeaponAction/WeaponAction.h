@@ -16,6 +16,7 @@ class WeaponAction
       bool _shootConfirmation;     
       bool _automaticMode;
       unsigned long _timeCounter;
+      bool _reloadStatus;
 
     public:
       WeaponAction(int chargerSize, int numOfChargers, int damage, unsigned long shootInterval);  // Constructor
@@ -28,6 +29,7 @@ class WeaponAction
       int getTotalAmmo();
       int getShootCounter();  
       bool* getShootConfirmation();
+      bool* getReloadStatus();
 
       //SETTERS:
       void setShootConfirmation();
