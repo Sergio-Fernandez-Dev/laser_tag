@@ -20,7 +20,7 @@ private:
     bool _stopChecking;
 public:
     HardwareController();
-    void checkShoot(bool ShootConfirmationValue); // Checks if WeaponAction::shoot() was activated & puts on the fire light 
+    void checkShoot(bool *ptrShootConfirmation); // Checks if WeaponAction::shoot() was activated & puts on the fire light 
     bool getStopChecking();
 };
 

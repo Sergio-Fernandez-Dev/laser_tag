@@ -27,7 +27,7 @@ class WeaponAction
       int getAmmoInCharger();   
       int getTotalAmmo();
       int getShootCounter();  
-      bool getShootConfirmation();
+      bool* getShootConfirmation();
 
       //SETTERS:
       void setShootConfirmation();
